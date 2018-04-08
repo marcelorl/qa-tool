@@ -23,7 +23,16 @@ const layersReducer = (state = initialState, action) => {
     case SORT_QUESTIONS: {
       const nQuestions = Array.from(state)
 
-      return nQuestions
+      return nQuestions.sort((a, b) => {
+        if (a.question > b.question) {
+          return 1
+        }
+        if (a.question < b.question) {
+          return -1
+        }
+
+        return 0
+      })
     }
 
     default:

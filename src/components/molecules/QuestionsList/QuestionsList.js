@@ -8,7 +8,19 @@ import {
 } from 'reactstrap'
 
 const List = styled.ul`
-  border: #d3d3d3 solid 1px
+  border: #d3d3d3 solid 1px;
+  border-radius: 3px;
+  list-style: none;
+  padding: 0;
+`
+
+const ListItem = styled.li`
+  border-bottom: #d3d3d3 solid 1px;
+  padding: 0.5rem 1rem;
+`
+
+const ListItemQuestion = styled.div`
+  font-weight: bold;
 `
 
 const renderAlert = questionsNumber => {
@@ -27,10 +39,10 @@ const renderList = questions => {
       <List>
         {questions.map((item, index) => {
           return (
-            <li key={index}>
-              {item.question}
-              {item.answer}
-            </li>
+            <ListItem key={index}>
+              <ListItemQuestion>{item.question}</ListItemQuestion>
+              <div>{item.answer}</div>
+            </ListItem>
           )
         })}
       </List>
@@ -38,20 +50,20 @@ const renderList = questions => {
   }
 }
 
-const renderButtons = questionsNumber => {
+const renderButtons = (questionsNumber, remove, sort) => {
   if (questionsNumber) {
     return (
       <Row>
         <Col>
-          <Button color='primary'>Sort questions</Button>{' '}
-          <Button color='danger'>Remove questions</Button>
+          <Button color='primary' onClick={sort}>Sort questions</Button>{' '}
+          <Button color='danger' onClick={remove}>Remove questions</Button>
         </Col>
       </Row>
     )
   }
 }
 
-const QuestionsList = ({ list }) =>
+const QuestionsList = ({ list, remove, sort }) =>
   <div>
     <Row>
       <Col>
@@ -66,7 +78,7 @@ const QuestionsList = ({ list }) =>
       </Col>
     </Row>
 
-    {renderButtons(list.length)}
+    {renderButtons(list.length, remove, sort)}
   </div>
 
 QuestionsList.defaultProps = {
