@@ -7,6 +7,8 @@ import {
   Row
 } from 'reactstrap'
 
+import Tooltip from '../../atoms/Tooltip'
+
 const List = styled.ul`
   border: #d3d3d3 solid 1px;
   border-radius: 3px;
@@ -67,7 +69,9 @@ const QuestionsList = ({ list, remove, sort }) =>
   <div>
     <Row>
       <Col>
-        <h2>Created questions</h2>
+        <Tooltip text='Here you can find the created questions and their answers.'>
+          <h2>Created questions</h2>
+        </Tooltip>
       </Col>
     </Row>
 

@@ -8,6 +8,8 @@ import {
   Row
 } from 'reactstrap'
 
+import Tooltip from '../../atoms/Tooltip'
+
 class CreateQuestionForm extends Component {
   constructor (props) {
     super(props)
@@ -43,7 +45,9 @@ class CreateQuestionForm extends Component {
       <Form className='mt-3' onSubmit={this.add}>
         <Row>
           <Col>
-            <h2 className='mx-0'>Create a new question</h2>
+            <Tooltip text='Here you can create new questions and their answers.'>
+              <h2 className='mx-0'>Create a new question</h2>
+            </Tooltip>
           </Col>
         </Row>
 
