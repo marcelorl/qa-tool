@@ -2,12 +2,12 @@ import { combineReducers, createStore, applyMiddleware } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import { createLogger } from 'redux-logger'
 
-// import userReducer from './user'
+import questionReducer from './question'
 
 const loggerMiddleware = createLogger()
 
 const reducers = combineReducers({
-  // user: userReducer
+  question: questionReducer
 })
 
 const middlewares = applyMiddleware(
