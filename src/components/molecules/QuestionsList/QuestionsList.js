@@ -19,6 +19,10 @@ const List = styled.ul`
 const ListItem = styled.li`
   border-bottom: #d3d3d3 solid 1px;
   padding: 0.5rem 1rem;
+  
+  &&&:last-child {
+    border: none;
+  }
 `
 
 const ListItemQuestion = styled.div`
