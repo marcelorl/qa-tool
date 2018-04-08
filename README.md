@@ -2,11 +2,11 @@
 
 ### Tools
 
-  - Client:
-    - React 16
-    - Redux
-    - Reactstrap
-    - Styled-components
+  - React 16
+  - Redux
+  - Reactstrap
+  - Styled-components
+  - Atomic design
 
 ### Installation + Start
 
