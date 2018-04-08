@@ -14,7 +14,7 @@ const List = styled.ul`
 const renderAlert = questionsNumber => {
   if (!questionsNumber) {
     return (
-      <Alert color="danger" className="w-100">
+      <Alert color='danger' className='w-100'>
         No questions yet! :-(
       </Alert>
     )
@@ -26,10 +26,12 @@ const renderList = questions => {
     return (
       <List>
         {questions.map((item, index) => {
-          <li key={index}>
-            {item.question}
-            {item.answer}
-          </li>
+          return (
+            <li key={index}>
+              {item.question}
+              {item.answer}
+            </li>
+          )
         })}
       </List>
     )
@@ -41,8 +43,8 @@ const renderButtons = questionsNumber => {
     return (
       <Row>
         <Col>
-          <Button color="primary">Sort questions</Button>{' '}
-          <Button color="danger">Remove questions</Button>
+          <Button color='primary'>Sort questions</Button>{' '}
+          <Button color='danger'>Remove questions</Button>
         </Col>
       </Row>
     )
@@ -68,7 +70,7 @@ const QuestionsList = ({ list }) =>
   </div>
 
 QuestionsList.defaultProps = {
-  list: [{}]
+  list: []
 }
 
 export default QuestionsList

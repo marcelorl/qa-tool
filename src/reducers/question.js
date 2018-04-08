@@ -1,20 +1,34 @@
-import { handleActions } from 'redux-actions'
-
 import {
-  add,
-  remove,
-  sort
+  ADD_QUESTION,
+  REMOVE_QUESTIONS,
+  SORT_QUESTIONS
 } from '../actions/question'
 
 const initialState = []
 
-const reducer = handleActions({
-  [add]: (state, action) => {
-    state.push(action.payload)
+const layersReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case ADD_QUESTION: {
+      const nQuestions = Array.from(state)
 
-    return state
-  },
-  [remove]: state => []
-}, initialState)
+      nQuestions.push(action.question)
 
-export default reducer
+      return nQuestions
+    }
+
+    case REMOVE_QUESTIONS: {
+      return []
+    }
+
+    case SORT_QUESTIONS: {
+      const nQuestions = Array.from(state)
+
+      return nQuestions
+    }
+
+    default:
+      return state
+  }
+}
+
+export default layersReducer

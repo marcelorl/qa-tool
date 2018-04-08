@@ -5,9 +5,15 @@ import {
 } from 'reactstrap'
 
 const renderNumberOfQuestions = numberOfQuestions => {
-  if (numberOfQuestions) {
+  if (!numberOfQuestions) {
     return 'no questions'
   }
+
+  if (numberOfQuestions === 1) {
+    return `${numberOfQuestions} question`
+  }
+
+  return `${numberOfQuestions} questions`
 }
 
 const Sidebar = ({ numberOfQuestions }) =>
@@ -16,9 +22,5 @@ const Sidebar = ({ numberOfQuestions }) =>
       Here you can find {renderNumberOfQuestions(numberOfQuestions)}. Feel free to create your own questions!
     </Col>
   </Row>
-
-Sidebar.defaultProps = {
-  numberOfQuestions: 2
-}
 
 export default Sidebar
