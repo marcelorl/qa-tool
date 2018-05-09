@@ -6,7 +6,11 @@ import {
 } from '../actions/question'
 
 const initialState = [
-  { answer: 'asdf', question: 'B' }, { answer: 'ASDF', question: 'b' }, { answer: 'qwerty', question: 'A' }, { answer: 'zxcv', question: 'a' }]
+  { answer: 'asdf', question: 'B' },
+  { answer: 'ASDF', question: 'b' },
+  { answer: 'qwerty', question: 'A' },
+  { answer: 'zxcv', question: 'a' }
+]
 
 const layersReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -23,11 +27,7 @@ const layersReducer = (state = initialState, action) => {
     }
 
     case REMOVE_ITEM: {
-      return state.filter((item, index) => {
-        if (index !== action.index) {
-          return true
-        }
-      })
+      return state.filter((item, index) => index !== action.index)
     }
 
     case SORT_QUESTIONS: {
