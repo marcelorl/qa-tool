@@ -26,11 +26,6 @@ class CreateQuestionForm extends Component {
   add (e) {
     e.preventDefault()
 
-    const answer = this.state.answer.trim()
-    const question = this.state.question.trim()
-
-    if (!answer || !question) return
-
     this.props.add(this.state)
 
     this.setState({
@@ -40,8 +35,10 @@ class CreateQuestionForm extends Component {
   }
 
   onChange (el) {
+    const nValue = el.target.value.trim()
+
     this.setState({
-      [el.target.name]: el.target.value
+      [el.target.name]: nValue
     })
   }
 
