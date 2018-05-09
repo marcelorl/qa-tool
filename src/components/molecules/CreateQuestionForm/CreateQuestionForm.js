@@ -26,6 +26,11 @@ class CreateQuestionForm extends Component {
   add (e) {
     e.preventDefault()
 
+    const answer = this.state.answer.trim()
+    const question = this.state.question.trim()
+
+    if (!answer || !question) return
+
     this.props.add(this.state)
 
     this.setState({

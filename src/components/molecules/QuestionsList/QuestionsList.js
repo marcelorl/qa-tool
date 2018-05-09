@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {Component} from 'react'
 import styled from 'styled-components'
 import {
   Alert,
@@ -18,6 +18,8 @@ const List = styled.ul`
 
 const ListItem = styled.li`
   border-bottom: #d3d3d3 solid 1px;
+  display: flex;
+  justify-content: space-between;
   padding: 0.5rem 1rem;
   
   &&&:last-child {
@@ -39,22 +41,6 @@ const renderAlert = questionsNumber => {
   }
 }
 
-const renderList = questions => {
-  if (questions.length) {
-    return (
-      <List>
-        {questions.map((item, index) => {
-          return (
-            <ListItem key={index}>
-              <ListItemQuestion>{item.question}</ListItemQuestion>
-              <div>{item.answer}</div>
-            </ListItem>
-          )
-        })}
-      </List>
-    )
-  }
-}
 
 const renderButtons = (questionsNumber, remove, sort) => {
   if (questionsNumber) {
@@ -69,25 +55,86 @@ const renderButtons = (questionsNumber, remove, sort) => {
   }
 }
 
-const QuestionsList = ({ list, remove, sort }) =>
-  <div>
-    <Row>
-      <Col>
-        <Tooltip text='Here you can find the created questions and their answers.'>
-          <h2>Created questions</h2>
-        </Tooltip>
-      </Col>
-    </Row>
+class QuestionsList extends Component {
+  constructor(props) {
+    super(props)
 
-    <Row>
-      <Col>
-        {renderAlert(list.length)}
-        {renderList(list)}
-      </Col>
-    </Row>
+    this.state = {list: props.list}
 
-    {renderButtons(list.length, remove, sort)}
-  </div>
+    this.onClick = this.onClick.bind(this)
+  }
+
+  componentWillReceiveProps(props) {
+    this.setState({list: props.list})
+  }
+
+  onClick(index) {
+    const { list } = this.state
+
+    const nList = Array.from(list)
+
+    nList[index].isOpen = !nList[index].isOpen
+
+    this.setState({ list: nList })
+  }
+
+  renderAnswer (item) {
+    if (item.isOpen) {
+      return (
+        <div>{item.answer}</div>
+      )
+    }
+  }
+
+  renderList () {
+    const { list: questions, removeItem } = this.props
+
+    if (questions.length) {
+      return (
+        <List>
+          {questions.map((item, index) => {
+            return (
+              <ListItem key={index}>
+                <div>
+                  <ListItemQuestion onClick={() => this.onClick(index)}>
+                    {item.question}
+                  </ListItemQuestion>
+                  {this.renderAnswer(item)}
+                </div>
+                <button type='button' onClick={() => removeItem(index)}>X</button>
+              </ListItem>
+            )
+          })}
+        </List>
+      )
+    }
+  }
+
+  render() {
+    const { list, remove, sort } = this.props
+
+    return (
+      <div>
+        <Row>
+          <Col>
+            <Tooltip text='Here you can find the created questions and their answers.'>
+              <h2>Created questions</h2>
+            </Tooltip>
+          </Col>
+        </Row>
+
+        <Row>
+          <Col>
+            {renderAlert(list.length)}
+            {this.renderList()}
+          </Col>
+        </Row>
+
+        {renderButtons(list.length, remove, sort)}
+      </div>
+    )
+  }
+}
 
 QuestionsList.defaultProps = {
   list: []

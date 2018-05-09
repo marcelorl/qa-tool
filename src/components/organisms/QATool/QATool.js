@@ -24,7 +24,7 @@ const ColContent = styled(Col)`
 `
 
 const QATool = props => {
-  const { add, question, remove, sort } = props
+  const { add, question, remove, removeItem, sort } = props
 
   return (
     <Row>
@@ -32,7 +32,7 @@ const QATool = props => {
         <Sidebar numberOfQuestions={question.length} />
       </Col>
       <ColContent sm='12' md='8'>
-        <QuestionsList list={question} remove={remove} sort={sort} />
+        <QuestionsList list={question} remove={remove} removeItem={removeItem} sort={sort} />
         <CreateQuestionForm add={add} />
       </ColContent>
     </Row>
