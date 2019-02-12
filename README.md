@@ -1,5 +1,7 @@
 # QA Tool
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/marcelorl/qa-tool.svg)](https://greenkeeper.io/)
+
 ### Tools
 
   - React 16
