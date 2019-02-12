@@ -1,0 +1,17 @@
+{
+  "groups": {
+    "default": {
+      "packages": [
+        "package.json",
+        "src/components/Pages/App/package.json",
+        "src/components/Templates/App/package.json",
+        "src/components/atoms/Tooltip/package.json",
+        "src/components/molecules/CreateQuestionForm/package.json",
+        "src/components/molecules/QuestionsList/package.json",
+        "src/components/molecules/Sidebar/package.json",
+        "src/components/organisms/QATool/package.json",
+        "src/reducers/package.json"
+      ]
+    }
+  }
+}
